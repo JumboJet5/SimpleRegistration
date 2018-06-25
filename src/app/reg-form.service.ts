@@ -77,6 +77,6 @@ export class RegFormService {
   }
 
   forWrongInput() {
-    console.error('wrong input');
+    alert('wrong input');
   }
 }

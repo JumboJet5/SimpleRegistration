@@ -1,0 +1,44 @@
+.outer {
+  margin: auto;
+  padding: 16px;
+  background-color: rgba(67, 168, 187, 0.85);
+  border-radius: 8px;
+  width: 300px;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+input[type=password], input[type=text] {
+  width: 220px;
+}
+
+input[type=password], input[type=text], input[type=submit], input[type=reset] {
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white no-repeat 10px 10px;
+  padding: 6px 12px 6px 12px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=password]:focus, input[type=text]:focus {
+  border: 2px solid #2e51cc;
+}
+
+input[type=submit], input[type=reset] {
+  margin: 16px;
+  border-radius: 8px;
+}
+
+input[type=submit]:hover, input[type=reset]:hover {
+  border: 2px solid #2e51cc;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+p {
+  font-size: 17px;
+  font-family: Georgia;
+}
