@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {RegFormService} from '../reg-form.service';
+import { ResData } from '../res-data';
 
 @Component({
   selector: 'app-confirm-code',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirm-code.component.css']
 })
 export class ConfirmCodeComponent implements OnInit {
+  confirmCode: string;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private regService: RegFormService
+  ) { }
 
   ngOnInit() {
   }
 
+  check() {
+    console.log('code', this.confirmCode);
+    if (this.regService.isSubmit && this.regService.confirmCode === this.confirmCode) {
+      this.router.navigate(['/welcome']);
+    }
+  }
 }
