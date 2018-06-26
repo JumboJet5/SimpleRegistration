@@ -4,8 +4,7 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
-import {ResData} from './res-data';
-import {validRepeated, validEmail} from './validators/regValidators';
+import {validEmail} from './validators/regValidators';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -14,46 +13,42 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class RegFormService {
+export class SigninFormService {
 
   constructor(private router: Router,
               public formBuilder: FormBuilder,
               private http: HttpClient) {
   }
 
-  public regForm: FormGroup;
-  public isSubmit: boolean;
-  public confirmCode: string;
+  signInForm: FormGroup;
+  isSubmit: boolean;
 
-  // temp generate confirm code
-  static getConfirmCode(res) {
-    return res.code ? res.code : '1111';
+  static forWrongInput() {
+    alert('wrong input');
   }
 
   buildForm() {
-    const getPassword = () => this.regForm ? this.regForm.value.userPassword : '';
     this.isSubmit = false;
-    this.regForm = this.formBuilder.group({
-      userFirstName: this.formBuilder.control('', Validators.required),
-      userLastName: this.formBuilder.control('', Validators.required),
+    this.signInForm = this.formBuilder.group({
       userEmail: this.formBuilder.control('', [Validators.required, validEmail()]),
       userPassword: this.formBuilder.control('', [Validators.required, Validators.minLength(8)]),
-      userRepeated: this.formBuilder.control('', [Validators.required, validRepeated(getPassword)])
     });
   }
 
   onSubmitForm() {
-    this.isSubmit = true;
-    const res = this.http.post<ResData>('app/send-email', this.regForm.value, httpOptions).pipe(
-      catchError(this.handleError('send email'))
+    const res = this.http.get().pipe(
+      catchError(this.handleError('SignIn'))
     );
-    this.gotoConfirmCode(res);
-    this.regForm.reset();
+    if (res) {
+      this.gotoWelcome();
+      this.regForm.reset();
+    } else {
+      SigninFormService.forWrongInput();
+    }
   }
 
-  gotoConfirmCode(res) {
-    this.confirmCode = RegFormService.getConfirmCode(res);
-    this.router.navigate(['/code']);
+  gotoWelcome() {
+    this.router.navigate(['/welcome']);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

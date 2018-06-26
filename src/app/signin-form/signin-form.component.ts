@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SigninFormService } from '../signin-form.service';
 
 @Component({
   selector: 'app-signin-form',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private signInService: SigninFormService) { }
 
   ngOnInit() {
+    this.signInService.buildForm();
   }
 
 }

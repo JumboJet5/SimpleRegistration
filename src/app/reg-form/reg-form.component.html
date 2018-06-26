@@ -1,17 +1,37 @@
 <div class="outer">
   <form [formGroup]="regService.regForm" (ngSubmit)="regService.onSubmitForm()">
+
     <p>first name</p>
-    <input type="text" formControlName="userFirstName" placeholder="first name">
+    <input
+      formControlName="userFirstName" required
+      type="text"
+      placeholder="first name">
+
     <p>last name</p>
-    <input type="text" formControlName="userLastName" placeholder="last name">
+    <input
+      formControlName="userLastName" required
+      type="text"
+      placeholder="last name">
+
     <p>email</p>
-    <input type="text" formControlName="userEmail" placeholder="email">
+    <input
+      formControlName="userEmail" required
+      type="text"
+      placeholder="email">
+
     <p>password</p>
-    <input type="password" formControlName="userPassword" placeholder="password">
+    <input
+      formControlName="userPassword" required
+      type="password"
+      placeholder="password">
+
     <p>repeat password</p>
-    <input type="password" formControlName="userRepeated" placeholder="repeat password">
+    <input
+      formControlName="userRepeated" required
+      type="password"
+      placeholder="repeat password">
     <br/>
-    <input type="submit" name="submit">
+    <input [disabled]="regService.regForm.invalid" type="submit" name="submit">
     <input type="reset" name="reset">
   </form>
 </div>

@@ -20,7 +20,6 @@ export class ConfirmCodeComponent implements OnInit {
   }
 
   check() {
-    console.log('code', this.confirmCode);
     if (this.regService.isSubmit && this.regService.confirmCode === this.confirmCode) {
       this.router.navigate(['/welcome']);
     } else {
