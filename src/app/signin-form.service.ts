@@ -36,12 +36,12 @@ export class SigninFormService {
   }
 
   onSubmitForm() {
-    const res = this.http.get().pipe(
-      catchError(this.handleError('SignIn'))
-    );
+    // const res = this.http.get().pipe(
+    //   catchError(this.handleError('SignIn'))
+    // );
     if (res) {
       this.gotoWelcome();
-      this.regForm.reset();
+      this.signInForm.reset();
     } else {
       SigninFormService.forWrongInput();
     }
